@@ -1,6 +1,5 @@
-# GDSC Study Session ML - Group 1
 
-This repository contains my weekly tasks for the GDSC Machine Learning Study Session.
+This repository contains my weekly tasks for the GDSC ML\AI Study Session.
 
 ## Week 1 Task
 - Created a list of 5 numbers
@@ -11,7 +10,7 @@ This repository contains my weekly tasks for the GDSC Machine Learning Study Ses
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 Make sure you have Python installed (3.8 or above recommended).
 
