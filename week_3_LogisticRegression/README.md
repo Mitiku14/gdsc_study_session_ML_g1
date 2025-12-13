@@ -1,65 +1,134 @@
-# Logistic Regression for Breast Cancer Detection
+# Breast Cancer Detection using Logistic Regression
 
-## 📌 Objective
-Use Logistic Regression to predict whether a breast tumor is **benign or malignant**
-based on medical features.
+## Project Overview
 
----
+This project uses **Logistic Regression** to predict whether a breast tumor is **benign** or **malignant** based on medical features. The goal is to understand the *full machine learning workflow* using simple and clear steps, without unnecessary complexity.
 
-## 📂 Dataset
-Breast Cancer dataset containing features such as:
-- Clump Thickness
-- Uniformity of Cell Size
-- Uniformity of Cell Shape
-- Marginal Adhesion
-- Bare Nuclei
-- Mitoses
-- etc.
+This project is implemented in **Google Colab** using **Python**, **pandas**, **scikit-learn**, **matplotlib**, and **seaborn**.
 
-**Target column:**
-- `Class`
-  - 2 → Benign
-  - 4 → Malignant
+## Dataset
 
----
+* **File name:** `breast_cancer_bd.csv`
+* **Target column:** `Class`
 
-## 🛠 Tools Used
-- Python
-- Google Colab
-- pandas
-- numpy
-- scikit-learn
+  * `2` → Benign
+  * `4` → Malignant
+### Dropped Column
+* `Sample code number` → It is only an ID, not useful for prediction.
+
+## Tools & Libraries Used
+
+* `pandas` → Data loading and manipulation
+* `numpy` → Numerical operations
+* `seaborn` → Data visualization
+* `matplotlib` → Plotting graphs
+* `scikit-learn` → Machine learning model and evaluation
 
 ---
 
-## ⚙️ Steps Performed
-1. Load dataset
-2. Drop non-informative column (Sample code number)
-3. Handle missing values
-4. Separate features and target
-5. Split data into training and testing sets (70/30)
-6. Train Logistic Regression model
-7. Evaluate model using:
-   - Accuracy
-   - Confusion Matrix
-   - Classification Report
+##  Steps Followed
+
+### 1️⃣ Load the Dataset
+
+```python
+import pandas as pd
+
+df = pd.read_csv("breast_cancer_bd.csv")
+df.head()
+```
 
 ---
 
-## 📊 Model Evaluation
-- Accuracy score
-- Precision, Recall, F1-score
-- Confusion Matrix
+### 2️⃣ Data Cleaning
+
+```python
+df = df.drop('Sample code number', axis=1)
+```
 
 ---
 
-## ▶️ How to Run
-1. Upload dataset to Google Colab
-2. Run notebook cells step by step
-3. View model performance metrics
+### 3️⃣ Split Features and Target
+
+```python
+X = df.drop('Class', axis=1)
+y = df['Class']
+```
 
 ---
 
-## ✅ Conclusion
-Logistic Regression effectively classifies breast cancer tumors
-into benign or malignant using medical attributes.
+### 4️⃣ Visualize Data (Seaborn)
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(x='Class', data=df)
+plt.title("Distribution of Cancer Classes")
+plt.show()
+```
+
+---
+
+### 5️⃣ Train-Test Split
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+```
+
+---
+
+### 6️⃣ Train Logistic Regression Model
+
+```python
+from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+```
+
+---
+
+### 7️⃣ Make Predictions
+
+```python
+y_pred = model.predict(X_test)
+```
+
+---
+
+### 8️⃣ Model Evaluation
+
+```python
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+```
+
+---
+
+## Evaluation Metrics Used
+
+* Accuracy
+* Confusion Matrix
+* Classification Report (Precision, Recall, F1-score)
+
+---
+
+## Conclusion
+
+This project demonstrates how Logistic Regression can effectively classify breast cancer tumors. The focus was on **understanding each step clearly**, rather than using advanced or complex techniques.
+
+---
+
+## How to Run This Project
+
+1. Open Google Colab
+2. Upload `breast_cancer_bd.csv`
+3. Copy and run the notebook cells step by step
+
