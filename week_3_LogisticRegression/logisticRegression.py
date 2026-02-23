@@ -5,7 +5,6 @@ def cost_function(y, y_pred):
     m = len(y)
     cost = -(1/m) * np.sum(y * np.log(y_pred) + (1 - y) * np.log(1-y_pred))
     return cost
-# example dataset
 X = np.array([0.2, 0.4, 0.6])
 y = np.array([0, 1, 1])
 theta = 0.5
